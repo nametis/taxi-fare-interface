@@ -1,4 +1,4 @@
-let taxiFareApiUrl = 'http://localhost:8001/predict'; // replace with your API endpoint
+let taxiFareApiUrl = 'https://taxifare-ypmpy36pfq-od.a.run.app/predict'; // replace with your API endpoint
 const centralCoordinates = [-74.00597, 40.71427]; // starting position [lng, lat]
 
 if (window.location.href.includes('https://taxifare.lewagon.com')) {
@@ -210,8 +210,9 @@ const predict = () => {
       .then(data => {
         document.getElementById('fare').classList.remove('d-none');
         const fareResult = document.getElementById('predicted-fare');
-        const fare = Math.round(data['fare'] * 100) / 100
+        const fare = Math.round(data['prediction'] * 100) / 100
         fareResult.innerText = `$${fare}`;
+        console.log(fare)
       })
       .catch((error) => {
         console.error('Error:', error);
